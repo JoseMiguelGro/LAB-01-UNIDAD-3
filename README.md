@@ -3,7 +3,6 @@
 **Materia:** Gestión de Seguridad y Desempeño de Bases de Datos  
 **Unidad:** III — Auditoría, trazabilidad y gobierno práctico de datos  
 **Estudiante:** Guerrero Romero José Miguel
-**Motor:** PostgreSQL 16.14  
 
 ## Despliegue del entorno
 El laboratorio se desplegó mediante contenedor oficial `postgres:16` (PostgreSQL 16.14 sobre Debian 14.2.0 x86_64-pc-linux-gnu), configurando las reglas de `pg_hba.conf` para exigir autenticación `scram-sha-256` en conexiones TCP locales (`127.0.0.1/32` y `::1/128`).
