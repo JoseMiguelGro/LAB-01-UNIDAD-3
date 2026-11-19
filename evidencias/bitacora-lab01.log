@@ -1,0 +1,42 @@
+2026-10-25 22:49:20.693 UTC [1] LOG:  starting PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-10-25 22:49:20.695 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-25 22:49:20.695 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-25 22:49:20.700 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-25 22:49:20.704 UTC [30] LOG:  database system was shut down at 2026-10-25 22:49:20 UTC
+2026-10-25 22:49:20.712 UTC [1] LOG:  database system is ready to accept connections
+2026-10-25 22:49:50.539 UTC [1] LOG:  parameter "log_connections" changed to "on"
+2026-10-25 22:49:50.539 UTC [1] LOG:  parameter "log_disconnections" changed to "on"
+2026-10-25 22:49:50.539 UTC [1] user= db= app= client= LOG:  parameter "log_line_prefix" changed to "%m [%p] user=%u db=%d app=%a client=%h "
+2026-10-25 22:49:50.539 UTC [1] user= db= app= client= LOG:  parameter "log_statement" changed to "ddl"
+2026-10-25 22:49:51.677 UTC [77] user=[unknown] db=[unknown] app=[unknown] client=[local] LOG:  connection received: host=[local]
+2026-10-25 22:49:51.678 UTC [77] user=postgres db=comercial app=[unknown] client=[local] LOG:  connection authorized: user=postgres database=comercial application_name=psql
+2026-10-25 22:50:00.324 UTC [91] user=[unknown] db=[unknown] app=[unknown] client=127.0.0.1 LOG:  connection received: host=127.0.0.1 port=47380
+2026-10-25 22:50:00.334 UTC [91] user=app_ventas db=comercial app=[unknown] client=127.0.0.1 FATAL:  password authentication failed for user "app_ventas"
+2026-10-25 22:50:00.334 UTC [91] user=app_ventas db=comercial app=[unknown] client=127.0.0.1 DETAIL:  Connection matched file "/var/lib/postgresql/data/pg_hba.conf" line 119: "host all all 127.0.0.1/32 scram-sha-256"
+2026-10-25 22:50:00.453 UTC [98] user=[unknown] db=[unknown] app=[unknown] client=127.0.0.1 LOG:  connection received: host=127.0.0.1 port=47386
+2026-10-25 22:50:00.462 UTC [98] user=usuario_inexistente db=comercial app=[unknown] client=127.0.0.1 FATAL:  password authentication failed for user "usuario_inexistente"
+2026-10-25 22:50:00.462 UTC [98] user=usuario_inexistente db=comercial app=[unknown] client=127.0.0.1 DETAIL:  Role "usuario_inexistente" does not exist.
+2026-10-25 22:50:00.558 UTC [105] user=[unknown] db=[unknown] app=[unknown] client=127.0.0.1 LOG:  connection received: host=127.0.0.1 port=47394
+2026-10-25 22:50:00.565 UTC [105] user=app_ventas db=comercial app=[unknown] client=127.0.0.1 LOG:  connection authenticated: identity="app_ventas" method=scram-sha-256 (/var/lib/postgresql/data/pg_hba.conf:119)
+2026-10-25 22:50:00.566 UTC [105] user=app_ventas db=comercial app=[unknown] client=127.0.0.1 LOG:  connection authorized: user=app_ventas database=comercial application_name=app-ventas-web
+2026-10-25 22:50:00.568 UTC [105] user=app_ventas db=comercial app=app-ventas-web client=127.0.0.1 LOG:  disconnection: session time: 0:00:00.010 user=app_ventas database=comercial host=127.0.0.1 port=47394
+2026-10-25 22:50:09.341 UTC [119] user=postgres db=comercial app=psql client=[local] LOG:  statement: REVOKE UPDATE ON clientes FROM soporte_ana;
+2026-10-25 22:50:09.367 UTC [119] user=postgres db=comercial app=psql client=[local] LOG:  statement: GRANT UPDATE ON clientes TO app_ventas;
+2026-10-25 22:50:09.372 UTC [119] user=postgres db=comercial app=psql client=[local] LOG:  statement: ALTER TABLE clientes ADD COLUMN segmento VARCHAR(20);
+2026-10-25 22:50:09.375 UTC [119] user=postgres db=comercial app=psql client=[local] LOG:  statement: CREATE ROLE rol_temporal LOGIN PASSWORD '<REDACTED>';
+2026-10-25 22:50:09.382 UTC [119] user=postgres db=comercial app=psql client=[local] LOG:  statement: DROP ROLE rol_temporal;
+2026-10-25 22:50:19.459 UTC [155] user=postgres db=comercial app=psql client=[local] LOG:  statement: ALTER SYSTEM SET log_statement = 'mod';
+2026-10-25 22:50:19.488 UTC [1] user= db= app= client= LOG:  parameter "log_statement" changed to "mod"
+2026-10-25 22:50:20.601 UTC [162] user=app_ventas db=comercial app=app-ventas-web client=127.0.0.1 LOG:  statement: UPDATE clientes SET telefono = '6679990000' WHERE id = 3;
+2026-10-25 22:50:24.112 UTC [168] user=soporte_ana db=comercial app=psql client=127.0.0.1 ERROR:  permission denied for table clientes
+2026-10-25 22:50:24.112 UTC [168] user=soporte_ana db=comercial app=psql client=127.0.0.1 STATEMENT:  DELETE FROM clientes WHERE id = 5;
+2026-10-25 22:50:26.405 UTC [175] user=postgres db=comercial app=psql client=[local] ERROR:  role "soporte_ana" cannot be dropped because some objects depend on it
+2026-10-25 22:50:26.405 UTC [175] user=postgres db=comercial app=psql client=[local] DETAIL:  privileges for table clientes
+2026-10-25 22:50:26.405 UTC [175] user=postgres db=comercial app=psql client=[local] STATEMENT:  DROP ROLE soporte_ana;
+2026-10-25 22:50:27.485 UTC [189] user=soporte_ana db=comercial app=reporte-mensual client=127.0.0.1 LOG:  connection authorized: user=soporte_ana database=comercial application_name=reporte-mensual
+2026-10-25 22:51:05.210 UTC [253] user=app_ventas db=comercial app=app-ventas-web client=127.0.0.1 LOG:  statement: ALTER TABLE clientes DISABLE TRIGGER trg_auditoria_clientes;
+2026-10-25 22:51:05.210 UTC [253] user=app_ventas db=comercial app=app-ventas-web client=127.0.0.1 ERROR:  must be owner of table clientes
+2026-10-25 22:51:12.801 UTC [260] user=postgres db=comercial app=psql client=[local] LOG:  statement: ALTER TABLE clientes DISABLE TRIGGER trg_auditoria_clientes;
+2026-10-25 22:51:12.805 UTC [260] user=postgres db=comercial app=psql client=[local] LOG:  statement: UPDATE clientes SET rfc = 'GAMA780912GHI' WHERE id = 3;
+2026-10-25 22:51:12.810 UTC [260] user=postgres db=comercial app=psql client=[local] LOG:  statement: ALTER TABLE clientes ENABLE TRIGGER trg_auditoria_clientes;
+2026-10-25 22:51:20.115 UTC [274] user=app_ventas db=comercial app=app-ventas-web client=127.0.0.1 LOG:  statement: UPDATE clientes SET segmento = 'regular';
